@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private TextView signupRedirect;
     private Button signinBtn;
@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passInput = findViewById(R.id.passwordInput);
 
+        signupRedirect.setOnClickListener(this);
+
+        /*
 
         signupRedirect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        */
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.signupText:
+                startActivity(new Intent(this, SignupActivity.class));
+                break;
+        }
 
     }
 }

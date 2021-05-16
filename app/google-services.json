@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159129867266",
+    "project_id": "barcart-8a1e0",
+    "storage_bucket": "barcart-8a1e0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159129867266:android:b0c93c767ab034aaa5c31b",
+        "android_client_info": {
+          "package_name": "ph.edu.dlsu.s12.barcart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159129867266-a82dpt1hq0pk43r1ihdpojl9ie4h9kak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8rSySlAp03vuAAL1TENFM5IVUWTKKdi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159129867266-a82dpt1hq0pk43r1ihdpojl9ie4h9kak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
