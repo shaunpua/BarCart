@@ -2,8 +2,14 @@ package ph.edu.dlsu.s12.barcart;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -25,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
 
+    private int REQUEST_CODE =101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,16 +107,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-
-                    Intent intent = new Intent(MainActivity.this, menuActivity.class);
+                    //request permission
+                    if(ContextCompat.checkSelfPermission(MainActivity.this,
+                            Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
+                        Intent intent = new Intent(MainActivity.this, menuActivity.class);
                     /*
                     note you need to premtively allow the use of the camera for this app on your device for the scanner to work. no error or permission request implemented
                     only a toast occurs when you scan something
                     Intent intent = new Intent(MainActivity.this, Scanner.class);
                      */
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else{
+                       requestCameraPermission();
+                    }
+
+
 
                 } else {
                     Toast.makeText(MainActivity.this, "Incorrect login credentials! Please try again!", Toast.LENGTH_LONG).show();
@@ -117,5 +132,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+    }
+    public void requestCameraPermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed to scan barcodes using the back camera of your device.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(MainActivity.this,new String[] {Manifest.permission.CAMERA},REQUEST_CODE);
+
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+        }else{
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.CAMERA},REQUEST_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==REQUEST_CODE){
+            if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED)
+                Toast.makeText(this,"Permission GRANTED",Toast.LENGTH_SHORT);
+        }
+        else{
+            Toast.makeText(this,"Permission DENIED",Toast.LENGTH_SHORT);
+        }
     }
 }
