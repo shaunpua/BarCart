@@ -1,42 +1,33 @@
 package ph.edu.dlsu.s12.barcart;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
-public class ScanFragment extends Fragment {
+public class Scanner extends AppCompatActivity {
     private CodeScanner mCodeScanner;
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final Activity activity = getActivity();
-        View root = inflater.inflate(R.layout.fragment_scan, container, false);
-        CodeScannerView scannerView = root.findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(activity, scannerView);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_scan);
+        CodeScannerView scannerView = findViewById(R.id.scanner_view);
+        mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
-                activity.runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Scanner.this, result.getText(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -47,19 +38,18 @@ public class ScanFragment extends Fragment {
                 mCodeScanner.startPreview();
             }
         });
-        return root;
     }
 
     @Override
-    public void onResume() {
+    protected void onResume() {
         super.onResume();
         mCodeScanner.startPreview();
     }
 
     @Override
-    public void onPause() {
+    protected void onPause() {
         mCodeScanner.releaseResources();
         super.onPause();
     }
-
 }
+
