@@ -170,6 +170,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             });
                             */
 
+                            Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+
                         } else {
                             Toast.makeText(SignupActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
                         }

@@ -100,8 +100,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-
-                    startActivity(new Intent(MainActivity.this, menuActivity.class));
+                    Intent intent = new Intent(MainActivity.this, menuActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
 
                 } else {
                     Toast.makeText(MainActivity.this, "Incorrect login credentials! Please try again!", Toast.LENGTH_LONG).show();
