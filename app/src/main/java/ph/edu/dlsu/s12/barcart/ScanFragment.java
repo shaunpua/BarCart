@@ -3,6 +3,7 @@ package ph.edu.dlsu.s12.barcart;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,7 +37,11 @@ public class ScanFragment extends Fragment {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        String barcode=result.getText();
+                        //Toast.makeText(activity, result.getText(), Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(activity, ItemFormActivity.class);
+                        i.putExtra("barcode", barcode);
+                        startActivity(i);
                     }
                 });
             }

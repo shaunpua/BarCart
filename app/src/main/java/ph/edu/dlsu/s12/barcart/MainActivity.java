@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int REQUEST_CODE =101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        INSERT CODE FOR NOTIFICATION AND DATA CHECKING HERE
+         */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -111,11 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(ContextCompat.checkSelfPermission(MainActivity.this,
                             Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
                         Intent intent = new Intent(MainActivity.this, menuActivity.class);
-                    /*
-                    note you need to premtively allow the use of the camera for this app on your device for the scanner to work. no error or permission request implemented
-                    only a toast occurs when you scan something
-                    Intent intent = new Intent(MainActivity.this, Scanner.class);
-                     */
+
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();

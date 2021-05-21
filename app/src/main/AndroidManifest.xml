@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarCart">
         <activity android:name=".menuActivity"></activity>
-        <activity android:name=".Scanner"></activity>
+        <activity android:name=".ItemFormActivity"></activity>
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
