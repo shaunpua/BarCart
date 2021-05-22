@@ -48,7 +48,7 @@ public class ItemFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //save to shared preferences and create entry in recycler view and then navigate to CartFragment
-                if (Itemname.isEmpty()) {
+                if (nameInput.getText().toString().trim().isEmpty()) {
                     nameInput.setError("Item Name is required!");
                     nameInput.requestFocus();
                     return;
