@@ -11,6 +11,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class ItemFormActivity extends AppCompatActivity {
 
@@ -18,10 +24,13 @@ public class ItemFormActivity extends AppCompatActivity {
     private EditText nameInput;
     private EditText descInput;
     private Button createBtn,cancelBtn;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_form);
+        mAuth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         String decoded = intent.getExtras().getString("barcode");
         barcode = findViewById(R.id.barcode);
@@ -32,8 +41,7 @@ public class ItemFormActivity extends AppCompatActivity {
         cancelBtn = findViewById(R.id.cancelButton);
 
         barcode.setText(decoded);
-        String Itemname = nameInput.getText().toString().trim();
-        String Itemdesc = descInput.getText().toString().trim();
+
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,12 +55,34 @@ public class ItemFormActivity extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String Itemname = nameInput.getText().toString().trim();
+                String Itemdesc = descInput.getText().toString().trim();
                 //save to shared preferences and create entry in recycler view and then navigate to CartFragment
                 if (nameInput.getText().toString().trim().isEmpty()) {
                     nameInput.setError("Item Name is required!");
                     nameInput.requestFocus();
                     return;
                 }else{
+
+                    Item item = new Item(Itemname, decoded,  Itemdesc);
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                    db.collection("items")
+                            .add(item)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(ItemFormActivity.this, "Successfully added item!", Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(ItemFormActivity.this, "Failed to add item!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
                     Intent intent = new Intent(ItemFormActivity.this, menuActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
