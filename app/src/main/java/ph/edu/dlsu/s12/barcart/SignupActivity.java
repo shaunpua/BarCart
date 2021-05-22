@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
@@ -135,7 +137,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            User user = new User(email, username);
+                            ArrayList<Item> itemList = new ArrayList<>();
+                            User user = new User(email, username, itemList);
                             Toast.makeText(SignupActivity.this, "User has been successfully authenticaed!", Toast.LENGTH_LONG).show();
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
                             db.collection("users")
