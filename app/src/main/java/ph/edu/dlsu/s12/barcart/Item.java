@@ -1,17 +1,16 @@
 package ph.edu.dlsu.s12.barcart;
 
 public class Item {
-    private String name, barcode,desc;
+    private String name, barcode,desc, userID;
     //private int itempos;
 
 
-    public Item( String name, String barcode, String desc
-                 /*,int itempos*/) {
+    public Item( String name, String barcode, String desc, String userID) {
 
         this.name = name;
         this.barcode = barcode;
         this.desc = desc;
-        //this.itempos = itempos;
+        this.userID = userID;
 
     }
     public String getProductName() {
@@ -23,6 +22,7 @@ public class Item {
     public String getProductDesc() {
         return desc;
     }
+    public String getUserID() {return userID;}
     /*public int getitempos() {return itempos;}
 
      */

@@ -77,12 +77,14 @@ public class CartFragment extends Fragment {
         data.add(new Item(
                 "name",
                 "barcode",
-                "description"
+                "description",
+                "1234"
                 ));
         data.add(new Item(
                 "name",
                 "barcode",
-                "description"
+                "description",
+                "12345"
                 ));
         return data;
     }

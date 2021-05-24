@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -58,6 +59,8 @@ public class ItemFormActivity extends AppCompatActivity {
 
                 String Itemname = nameInput.getText().toString().trim();
                 String Itemdesc = descInput.getText().toString().trim();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String user_ID =  user.getUid();
                 //save to shared preferences and create entry in recycler view and then navigate to CartFragment
                 if (nameInput.getText().toString().trim().isEmpty()) {
                     nameInput.setError("Item Name is required!");
@@ -65,7 +68,7 @@ public class ItemFormActivity extends AppCompatActivity {
                     return;
                 }else{
 
-                    Item item = new Item(Itemname, decoded,  Itemdesc);
+                    Item item = new Item(Itemname, decoded,  Itemdesc, user_ID);
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
                     db.collection("items")
