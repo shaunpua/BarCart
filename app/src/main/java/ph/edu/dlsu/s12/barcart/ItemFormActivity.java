@@ -11,8 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -71,6 +73,29 @@ public class ItemFormActivity extends AppCompatActivity {
                     Item item = new Item(Itemname, decoded,  Itemdesc, user_ID);
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+                    DocumentReference newItemRef = db
+                            .collection("items")
+                            .document();
+
+                    Item itemAdd = new Item();
+                    itemAdd.setProductName(Itemname);
+                    itemAdd.setBarcode(decoded);
+                    itemAdd.setProductDesc(Itemdesc);
+                    itemAdd.setUserID(user_ID);
+
+                    newItemRef.set(itemAdd).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ItemFormActivity.this, "Successfully added item!", Toast.LENGTH_LONG).show();
+
+                            } else {
+                                Toast.makeText(ItemFormActivity.this, "Failed to add item!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+                    /*
                     db.collection("items")
                             .add(item)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -85,6 +110,7 @@ public class ItemFormActivity extends AppCompatActivity {
                                     Toast.makeText(ItemFormActivity.this, "Failed to add item!", Toast.LENGTH_LONG).show();
                                 }
                             });
+                    */
 
                     Intent intent = new Intent(ItemFormActivity.this, menuActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
