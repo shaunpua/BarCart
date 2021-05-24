@@ -179,7 +179,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             finish();
 
                         } else {
-                            Toast.makeText(SignupActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SignupActivity.this, "Failed to register, the user may already be registered.", Toast.LENGTH_LONG).show();
                         }
                     }
 
