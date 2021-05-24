@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //site below to click a button that lets you schedule alarms and mayb notifs(?) to appear on a certain date of the year
          https://www.tutorialspoint.com/how-to-set-an-android-notification-to-a-specific-date-in-the-future
          */
+        /*
+
+
         //checking date
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setAutoCancel(true);
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
         managerCompat.notify(0,builder.build());
-
+        */
         /*
         END NOTIFICATION CHECKING HERE
          */

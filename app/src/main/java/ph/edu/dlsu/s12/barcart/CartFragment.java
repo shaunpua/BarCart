@@ -2,6 +2,7 @@ package ph.edu.dlsu.s12.barcart;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +44,11 @@ public class CartFragment extends Fragment {
         }
     }).start();
          */
+        Log.i("test", "Logcat->Verbose tagname(test)");
+
         this.data = load_data();
+        Log.i("test", "Logcat->Verbose tagname(test)");
+
         MainAdapter mainAdapter = new MainAdapter(data);
         recycler_view.setAdapter(mainAdapter);
         recycler_view.addItemDecoration(new DividerItemDecoration(recycler_view.getContext(), DividerItemDecoration.VERTICAL));
@@ -67,6 +72,7 @@ public class CartFragment extends Fragment {
 
     private ArrayList<Item> load_data() {
         ArrayList<Item> data = new ArrayList<Item>();
+        Log.i("test", "Logcat->Verbose tagname(test)");
 
         data.add(new Item(
                 "name",
