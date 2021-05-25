@@ -5,65 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="25dp"
     tools:context=".ItemFormActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="New Scanned Item"
-        android:textColor="#FF5C6C"
-        android:textSize="28sp" />
-
-    <TextView
-        android:id="@+id/barcode"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Barcode"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/nameInputForm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Item Name"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textSize="24sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp" >
 
-    <EditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="New Scanned Item"
+                android:textColor="#FF5C6C"
+                android:textSize="28sp" />
 
-        android:id="@+id/descriptionInputForm"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="Item Description"
-        android:inputType="textEmailAddress"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+            <TextView
+                android:id="@+id/barcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Barcode"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/createButton"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="#FF5C6C"
-        android:text="CREATE"
-        android:textSize="24sp" />
+            <EditText
+                android:id="@+id/nameInputForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Item Name"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@android:color/darker_gray"
-        android:text="cancel"
-        android:textSize="24sp" />
+            <EditText
+
+                android:id="@+id/descriptionInputForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Item Description"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/createButton"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#FF5C6C"
+                android:text="CREATE"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="cancel"
+                android:textSize="24sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

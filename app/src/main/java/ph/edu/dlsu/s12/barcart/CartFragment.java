@@ -24,11 +24,13 @@ public class CartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
+        /*
         final Activity activity = getActivity();
+
         RecyclerView recycler_view = (RecyclerView) root.findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         recycler_view.setLayoutManager(layoutManager);
-
+        */
         /*
         //https://stackoverflow.com/questions/26621060/display-a-recyclerview-in-fragment
          new Thread(new Runnable() {
@@ -44,6 +46,7 @@ public class CartFragment extends Fragment {
         }
     }).start();
          */
+        /*
         Log.i("test", "Logcat->Verbose tagname(test)");
 
         this.data = load_data();
@@ -67,6 +70,8 @@ public class CartFragment extends Fragment {
                 mainAdapter.notifyDataSetChanged();
             }
         }).attachToRecyclerView(recycler_view);
+
+         */
         return root;
     }
 
