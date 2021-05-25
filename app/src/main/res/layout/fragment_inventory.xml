@@ -5,17 +5,9 @@
     android:orientation="vertical"
     android:padding="25dp">
 
-    <Button
-        android:id="@+id/btnDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="setDate"
-        android:text="Schedule Reminder" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inventoryRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp" />
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

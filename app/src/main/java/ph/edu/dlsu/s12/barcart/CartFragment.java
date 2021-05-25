@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,12 +19,37 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
-    private ArrayList<Item> data;
+    private ArrayList<Cart> cartList;
+
+    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_cart, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        recyclerView = view.findViewById(R.id.cartRecycler);
+        cartList= new ArrayList<>();
+        setCartInfo();
+
+        setAdadpter();
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                cartList.remove(viewHolder.getAdapterPosition());
+
+                setAdadpter();
+
+
+
+            }
+        }).attachToRecyclerView(recyclerView);
         /*
         final Activity activity = getActivity();
 
@@ -72,25 +98,34 @@ public class CartFragment extends Fragment {
         }).attachToRecyclerView(recycler_view);
 
          */
-        return root;
+        return view;
+    }
+    private void setAdadpter() {
+        final Activity activity = getActivity();
+        recyclerAdapter adapter = new recyclerAdapter(cartList);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
     }
 
-    private ArrayList<Item> load_data() {
-        ArrayList<Item> data = new ArrayList<Item>();
-        Log.i("test", "Logcat->Verbose tagname(test)");
+    private void setCartInfo() {
 
-        data.add(new Item(
-                "name",
-                "barcode",
-                "description",
-                "1234"
-                ));
-        data.add(new Item(
-                "name",
-                "barcode",
-                "description",
-                "12345"
-                ));
-        return data;
+        ArrayList<Item> product1 = new ArrayList<>();
+
+
+
+        product1.add(new Item(
+                "Iphone 12",
+                "14444124124",
+                "This is a scam by steve jobs",
+                "123456"
+        ));
+
+
+        cartList.add(new Cart(
+                "Robinsons Grocery", product1));
+
     }
+
 }

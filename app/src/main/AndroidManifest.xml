@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarCart">
         <activity android:name=".menuActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity android:name=".CartItemActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".ItemFormActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".SignupActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
         <activity android:name=".MainActivity" android:configChanges="orientation|screenSize|keyboardHidden">

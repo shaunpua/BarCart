@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,7 +31,8 @@ import java.util.TimeZone;
 public class menuActivity extends AppCompatActivity {
     public static final String NOTIFICATION_CHANNEL_ID = "10001";
     private final static String default_notification_channel_id = "default";
-    Button btnDate;
+    ImageView btnDate;
+    TextView cartDate;
     final Calendar myCalendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class menuActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
-        btnDate = findViewById(R.id.btnDate);
+        btnDate = findViewById(R.id.btnDate2);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new ScanFragment()).commit();
     }
 
@@ -94,9 +97,9 @@ public class menuActivity extends AppCompatActivity {
 
         Date date = myCalendar.getTime();
         String alarmdate=sdf.format(date);
-        btnDate = findViewById(R.id.btnDate);
+        cartDate = findViewById(R.id.notifDate);
 
-        btnDate.setText("Last reminder for: "+sdf.format(date));
+        cartDate.setText("Last reminder: "+sdf.format(date));
         //trying something
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         long tmp=(calendar.getTimeInMillis() );
