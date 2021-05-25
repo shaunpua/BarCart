@@ -94,7 +94,9 @@ public class menuActivity extends AppCompatActivity {
 
         Date date = myCalendar.getTime();
         String alarmdate=sdf.format(date);
-        //btnDate.setText(sdf.format(date));
+        btnDate = findViewById(R.id.btnDate);
+
+        btnDate.setText("Last reminder for: "+sdf.format(date));
         //trying something
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         long tmp=(calendar.getTimeInMillis() );
