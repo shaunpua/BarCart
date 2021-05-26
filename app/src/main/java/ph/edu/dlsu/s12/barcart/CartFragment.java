@@ -16,6 +16,15 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
@@ -29,9 +38,11 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         recyclerView = view.findViewById(R.id.cartRecycler);
         cartList= new ArrayList<>();
+
+        setCartAdapter();
         setCartInfo();
 
-        setAdadpter();
+
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
             @Override
@@ -44,12 +55,15 @@ public class CartFragment extends Fragment {
 
                 cartList.remove(viewHolder.getAdapterPosition());
 
-                setAdadpter();
+                setCartAdapter();
 
 
 
             }
         }).attachToRecyclerView(recyclerView);
+
+
+
         /*
         final Activity activity = getActivity();
 
@@ -71,7 +85,7 @@ public class CartFragment extends Fragment {
             });
         }
     }).start();
-         */
+
         /*
         Log.i("test", "Logcat->Verbose tagname(test)");
 
@@ -100,7 +114,7 @@ public class CartFragment extends Fragment {
          */
         return view;
     }
-    private void setAdadpter() {
+    private void setCartAdapter() {
         final Activity activity = getActivity();
         recyclerAdapter adapter = new recyclerAdapter(cartList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
@@ -111,6 +125,7 @@ public class CartFragment extends Fragment {
 
     private void setCartInfo() {
 
+        /*
         ArrayList<Item> product1 = new ArrayList<>();
 
 
@@ -126,6 +141,73 @@ public class CartFragment extends Fragment {
         cartList.add(new Cart(
                 "Robinsons Grocery", "Cart for groceries" , "user1",product1));
 
+        }
+        */
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference cartCollectionRef = db.collection("carts");
+
+        Query cartQuery = cartCollectionRef.whereEqualTo("userIDC",  FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        cartQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document: task.getResult()) {
+                        Cart cartGet = document.toObject(Cart.class);
+                        cartList.add(cartGet);
+                    }
+
+                    setCartAdapter();
+
+                } else {
+
+                    ArrayList<Item> product2 = new ArrayList<>();
+
+
+
+                    product2.add(new Item(
+                            "Iphone 12",
+                            "14444124124",
+                            "This is a scam by steve jobs",
+                            "123456"
+                    ));
+
+
+                    cartList.add(new Cart(
+                            "Failed to get data from firebase", "Cart for groceries" , "user1",product2));
+
+
+
+
+                }
+
+            }
+        });
+        /*
+        ArrayList<Item> product1 = new ArrayList<>();
+
+
+
+        product1.add(new Item(
+                "Iphone 12",
+                "14444124124",
+                "This is a scam by steve jobs",
+                "123456"
+        ));
+
+
+        cartList.add(new Cart(
+                "Robinsons Grocery", "Cart for groceries" , "user1",product1));
+
+
+        */
+
+
+
     }
+
 
 }
