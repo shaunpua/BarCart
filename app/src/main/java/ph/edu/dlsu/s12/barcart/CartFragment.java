@@ -124,7 +124,7 @@ public class CartFragment extends Fragment {
 
 
         cartList.add(new Cart(
-                "Robinsons Grocery", product1));
+                "Robinsons Grocery", "Cart for groceries" , "user1",product1));
 
     }
 
