@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,6 +34,7 @@ public class menuActivity extends AppCompatActivity {
     private final static String default_notification_channel_id = "default";
     ImageView btnDate;
     TextView cartDate;
+    FloatingActionButton add_cart_btn;
     final Calendar myCalendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,18 @@ public class menuActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
         bottomNav.setOnNavigationItemSelectedListener(navListner);
         btnDate = findViewById(R.id.btnDate2);
+        add_cart_btn=findViewById(R.id.add_cart_btn);
+        /*
+        add_cart_btn.setOnClickListener((View v) -> {
+            startActivity(new Intent(menuActivity.this, AddCartActivity.class));
+        });
+
+         */
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new ScanFragment()).commit();
     }
-
+    public void addCart(View view) {
+        startActivity(new Intent(this, AddCartActivity.class));
+    }
     private void scheduleNotification(Notification notification, long delay) {
 
         Intent notificationIntent = new Intent(this, MyNotificationPublisher.class);
