@@ -18,46 +18,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="Add a cart"
+                android:text="Add an item to cart"
                 android:textColor="#FF5C6C"
                 android:textSize="28sp" />
 
-            <EditText
-                android:id="@+id/cartNameInput"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/add_item_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Cart Name"
-                android:inputType="text"
-                android:textSize="24sp" />
-
-            <EditText
-                android:id="@+id/cartDescInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Cart Desc"
-                android:inputType="text"
-                android:textSize="24sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp" />
 
             <Button
-                android:id="@+id/confirmButton"
+                android:id="@+id/item_confirm_btn"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="#FF5C6C"
                 android:text="Confirm"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/cancel_Button"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:backgroundTint="@android:color/darker_gray"
-                android:text="Cancel"
                 android:textSize="24sp" />
 
         </LinearLayout>

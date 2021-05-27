@@ -72,6 +72,7 @@ public class AddCartActivity extends AppCompatActivity {
 
                     //intent.putExtra("cartName",cartName);
                     startActivity(intent);
+                    finish();
                 }
 
             }
@@ -81,6 +82,7 @@ public class AddCartActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(AddCartActivity.this, menuActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

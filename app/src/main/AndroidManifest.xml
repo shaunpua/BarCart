@@ -14,6 +14,7 @@
         <activity android:name=".menuActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".CartItemActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".AddCartActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
+        <activity android:name=".AddItemActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
 
         <activity android:name=".ItemFormActivity" android:configChanges="orientation|screenSize|keyboardHidden"></activity>
         <activity android:name=".SignupActivity" android:configChanges="orientation|screenSize|keyboardHidden"/>
