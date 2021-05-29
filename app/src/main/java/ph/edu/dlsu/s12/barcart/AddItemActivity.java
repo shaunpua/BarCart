@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,14 +32,24 @@ public class AddItemActivity extends AppCompatActivity {
     private ArrayList<Item> item_add_List;
     Button add_item_confirm_Button;
     RecyclerView add_item_recycler;
+    private TextView cartName;
+    private TextView cartDesc;
+    String name,desc;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
         add_item_confirm_Button=findViewById(R.id.item_confirm_btn);
         add_item_recycler=findViewById(R.id.add_item_recycler);
+        cartName = findViewById(R.id.prevcartName_tv);
+        cartDesc = findViewById(R.id.prevcartDesc_tv);
+
         item_add_List= new ArrayList<>();
         setAddItemAdapter();
-
+        Intent i = getIntent();
+        this.name=i.getStringExtra("cart_name");
+        this.desc=i.getStringExtra("cart_desc");
+        cartName.setText(name);
+        cartDesc.setText(desc);
         getItems();
 
         add_item_confirm_Button.setOnClickListener(new View.OnClickListener(){

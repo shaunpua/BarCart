@@ -20,14 +20,13 @@ import java.util.List;
 
 public class CartItemActivity extends AppCompatActivity {
     private TextView cartName;
-
     private ArrayList<Item> itemList;
 
     private RecyclerView recyclerView;
 
     private TextView cartDesc;
+    String name,desc;
 
-    private FloatingActionButton Item_add_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +39,6 @@ public class CartItemActivity extends AppCompatActivity {
         itemList= new ArrayList<>();
 
         cartName = findViewById(R.id.cartName_tv);
-        Item_add_btn = findViewById(R.id.Item_add_btn);
         Intent i = getIntent();
         String productString = i.getStringExtra("item_list");
         Gson gson = new Gson();
@@ -51,9 +49,10 @@ public class CartItemActivity extends AppCompatActivity {
         itemList = gson.fromJson(productString, type);
 
 
-
-        cartName.setText(i.getStringExtra("cart_name"));
-
+        this.name=i.getStringExtra("cart_name");
+        this.desc=i.getStringExtra("cart_desc");
+        cartName.setText(name);
+        cartDesc.setText(desc);
         setCartItemAdapter();
 
 
@@ -61,7 +60,10 @@ public class CartItemActivity extends AppCompatActivity {
 
     }
     public void addItem(View view) {
-        startActivity(new Intent(CartItemActivity.this, AddItemActivity.class));
+        Intent i = new Intent(CartItemActivity.this,  AddItemActivity.class);
+        i.putExtra("cart_name", name);
+        i.putExtra("cart_desc", desc);
+        startActivity(i);
     }
     private void setCartItemAdapter() {
         itemList.add(new Item(

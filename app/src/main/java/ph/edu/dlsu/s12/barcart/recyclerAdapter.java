@@ -43,9 +43,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         String cText = cartList.get(position).getCartName();
-
         holder.cartName.setText(cText);
-
         Gson gson = new Gson();
 
         String jsonProducts = gson.toJson(cartList.get(position).getItems());
@@ -75,6 +73,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                 Intent i = new Intent(view.getContext(), CartItemActivity.class);
                 Log.i("test", "Logcat->Verbose tagname(test)");
                 i.putExtra("cart_name", cartList.get(position).getCartName());
+                i.putExtra("cart_desc", cartList.get(position).getCartDesc());
                 i.putExtra("item_list", jsonProducts);
                 Log.i("test", "Logcat->Verbose tagname(test)");
                 view.getContext().startActivity(i);
