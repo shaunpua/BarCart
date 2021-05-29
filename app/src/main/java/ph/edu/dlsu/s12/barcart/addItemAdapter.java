@@ -117,6 +117,10 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
 
     }
 
+    public ArrayList<Item> getSelectedItems(){
+        return selectedItems;
+    }
+
 
     @Override
     public int getItemCount() {

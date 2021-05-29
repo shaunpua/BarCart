@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,10 +27,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddItemActivity extends AppCompatActivity {
 
     private ArrayList<Item> item_add_List;
+    private ArrayList<Item> selectedItems;
+    private ArrayList<Cart> selectedCart;
     Button add_item_confirm_Button;
     RecyclerView add_item_recycler;
     private TextView cartName;
@@ -44,6 +48,8 @@ public class AddItemActivity extends AppCompatActivity {
         cartDesc = findViewById(R.id.prevcartDesc_tv);
 
         item_add_List= new ArrayList<>();
+        selectedItems = new ArrayList<>();
+        selectedCart = new ArrayList<>();
         setAddItemAdapter();
         Intent i = getIntent();
         this.name=i.getStringExtra("cart_name");
@@ -59,6 +65,30 @@ public class AddItemActivity extends AppCompatActivity {
                 //note going to CartItemActivity is currently not possible because there is no way to determine what the previous cart selected was.
                 Intent intent = new Intent(AddItemActivity.this, CartItemActivity.class);
                  */
+                /*
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+               DocumentReference cartRef = db.collection("carts").getId()
+                */
+                //Query singleCartQuery = cartCollectionRef.whereEqualTo("cartName",  name.toString()).whereEqualTo("cartDesc",  desc.toString());
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String user_ID =  user.getUid();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                String docID = name + user_ID;
+
+
+
+                db.collection("carts").document(docID).update("items", selectedItems);
+
+               //Query docQuer = db.collection("carts").whereEqualTo("cartName",  name.toString()).whereEqualTo("cartDesc",  desc.toString());
+
+
+
+
+
+
                 Intent intent = new Intent(AddItemActivity.this, menuActivity.class);
                 startActivity(intent);
                 finish();
@@ -126,5 +156,9 @@ public class AddItemActivity extends AppCompatActivity {
         add_item_recycler.setLayoutManager(layoutManager);
         add_item_recycler.setItemAnimator(new DefaultItemAnimator());
         add_item_recycler.setAdapter(adapter);
+
+        selectedItems = adapter.getSelectedItems();
+
+
     }
 }

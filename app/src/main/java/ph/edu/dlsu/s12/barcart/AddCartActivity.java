@@ -44,10 +44,10 @@ public class AddCartActivity extends AppCompatActivity {
                 }
                 else{
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+                    String docID = cartName + user_ID;
                     DocumentReference newCartRef = db
                             .collection("carts")
-                            .document();
+                            .document(docID);
 
                     Cart cartAdd = new Cart();
                     cartAdd.setCartName(cartName);
