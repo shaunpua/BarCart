@@ -2,6 +2,9 @@ package ph.edu.dlsu.s12.barcart;
 
 public class Item {
     private String name, barcode,desc, userID;
+
+    //private Boolean isChecked = false;
+
     //private int itempos;
 
     public Item(){
@@ -25,7 +28,15 @@ public class Item {
         return desc;
     }
     public String getUserID() {return userID;}
+    /*
+    public Boolean isChecked(){
+        return isChecked;
+    }
 
+    public void setChecked(boolean checked){
+        isChecked = checked;
+    }
+    */
     public void setProductName(String name) {
         this.name = name;
     }

@@ -1,9 +1,11 @@
 package ph.edu.dlsu.s12.barcart;
 
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,11 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
 
 
     private ArrayList<Item> itemList;
+    boolean isSelectedMode = false;
+
+    ArrayList<Item> selectedItems = new ArrayList<>();
+
+    //private Context context;
 
     public addItemAdapter(ArrayList<Item> itemList){
         this.itemList = itemList;
@@ -23,16 +30,68 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
         private TextView  nameTxt,  codeTxt, descTxt;
+        private ImageView selectCheck;
 
         public MyViewHolder(final View view){
             super(view);
+
+
+            selectCheck = view.findViewById(R.id.CartitemCheck);
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    isSelectedMode = true;
+                    if (selectedItems.contains(itemList.get(getAdapterPosition()))){
+                        //view.setBackgroundColor(Color.TRANSPARENT);
+                        selectCheck.setVisibility(View.INVISIBLE);
+
+                        selectedItems.remove(itemList.get(getAdapterPosition()));
+                    } else {
+                        //view.setBackgroundColor(Color.BLACK);
+                        selectCheck.setVisibility(View.VISIBLE);
+                        selectedItems.add(itemList.get(getAdapterPosition()));
+                    }
+
+
+                    if (selectedItems.size() == 0) {
+                        isSelectedMode = false;
+                    }
+                    return true;
+                }
+            });
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isSelectedMode){
+                        if (selectedItems.contains(itemList.get(getAdapterPosition()))){
+                            //view.setBackgroundColor(Color.TRANSPARENT);
+                            selectCheck.setVisibility(View.INVISIBLE);
+                            selectedItems.remove(itemList.get(getAdapterPosition()));
+                        } else {
+                            //view.setBackgroundColor(Color.BLACK);
+                            selectCheck.setVisibility(View.VISIBLE);
+                            selectedItems.add(itemList.get(getAdapterPosition()));
+                        }
+
+                        if (selectedItems.size() == 0) {
+                            isSelectedMode = false;
+                        }
+                    } else {
+
+                    }
+
+                }
+            });
             nameTxt = view.findViewById(R.id.CartitemName);
             codeTxt = view.findViewById(R.id.CartitemCode);
             descTxt = view.findViewById(R.id.CartitemDesc);
+
         }
 
-    }
 
+
+    }
 
     @NonNull
     @Override

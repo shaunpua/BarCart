@@ -17,8 +17,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -35,6 +39,8 @@ public class AddItemActivity extends AppCompatActivity {
         item_add_List= new ArrayList<>();
         setAddItemAdapter();
 
+        getItems();
+
         add_item_confirm_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -49,9 +55,42 @@ public class AddItemActivity extends AppCompatActivity {
         });
 
     }
+
+    private void getItems() {
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        CollectionReference itemCollectionRef = db.collection("items");
+
+        Query itemsQuery = itemCollectionRef.whereEqualTo("userID",  FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        itemsQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot document: task.getResult()) {
+                        Item itemGet = document.toObject(Item.class);
+                        item_add_List.add(itemGet);
+                    }
+
+                    setAddItemAdapter();
+
+                } else {
+
+
+
+
+                }
+
+            }
+        });
+
+    }
     private void setAddItemAdapter() {
 
-
+        /*
         item_add_List.add(new Item(
                 "Iphone 12",
                 "14444124124",
@@ -67,6 +106,9 @@ public class AddItemActivity extends AppCompatActivity {
                 "This is a scam by steve jobs",
                 "123456"
         ));
+
+
+         */
         addItemAdapter adapter = new addItemAdapter(item_add_List);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
