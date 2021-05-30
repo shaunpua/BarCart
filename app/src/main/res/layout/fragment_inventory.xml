@@ -5,6 +5,15 @@
     android:orientation="vertical"
     android:padding="25dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your inventory"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:layout_marginBottom="20dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inventoryRecycler"
         android:layout_width="match_parent"

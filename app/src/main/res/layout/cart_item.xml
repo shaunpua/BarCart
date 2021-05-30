@@ -48,12 +48,13 @@
 
         <ImageView
             android:id="@+id/CartitemCheck"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_check"
             android:visibility="invisible"
-            android:layout_marginLeft="300dp" />
+            android:layout_marginRight="20dp" />
 
     </androidx.cardview.widget.CardView>
 

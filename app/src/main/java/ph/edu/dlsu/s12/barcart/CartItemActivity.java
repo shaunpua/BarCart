@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,6 +40,7 @@ public class CartItemActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private TextView cartDesc;
+    private ImageView cartDelete;
     String name,desc;
 
     @Override
@@ -49,9 +52,11 @@ public class CartItemActivity extends AppCompatActivity {
         Log.i("test", "REACHED");
         recyclerView = findViewById(R.id.cartItemRecycler);
         cartDesc = findViewById(R.id.cartDesc_tv);
+        cartName = findViewById(R.id.cartName_tv);
+        cartDelete = findViewById(R.id.cartDelete);
         itemList= new ArrayList<>();
 
-        cartName = findViewById(R.id.cartName_tv);
+
         Intent i = getIntent();
         String productString = i.getStringExtra("item_list");
         Gson gson = new Gson();
@@ -67,6 +72,39 @@ public class CartItemActivity extends AppCompatActivity {
         cartName.setText(name);
         cartDesc.setText(desc);
         setCartItemAdapter();
+
+        cartDelete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String user_ID =  user.getUid();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                String docID = name + user_ID;
+
+                DocumentReference delRef = db.collection("carts").document(docID);
+
+                delRef.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+
+                            Intent intent = new Intent(CartItemActivity.this, menuActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            Toast.makeText(CartItemActivity.this,"Failed to delete Cart!",Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+
+
+            }
+        });
 
 
 

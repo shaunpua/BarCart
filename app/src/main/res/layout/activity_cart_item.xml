@@ -30,6 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="cart description" />
+            <ImageView
+                android:id="@+id/cartDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="-20dp"
+                android:layout_gravity="right"
+                android:backgroundTint="#FF5C6C"
+                android:background="@drawable/ic_delete" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/Item_add_btn"
