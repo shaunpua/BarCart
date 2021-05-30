@@ -47,23 +47,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         Gson gson = new Gson();
 
         String jsonProducts = gson.toJson(cartList.get(position).getItems());
-        /*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), PurchaseActivity.class);
-                i.putExtra("store_name", orderList.get(position).getStoreName());
-                i.putExtra("date_name", orderList.get(position).getDate());
-                i.putExtra("order_name", orderList.get(position).getOrderID());
-                i.putExtra("cour_name", orderList.get(position).getCourID());
-                i.putExtra("product_list", jsonProducts);
 
-
-                view.getContext().startActivity(i);
-            }
-        });
-
-         */
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 

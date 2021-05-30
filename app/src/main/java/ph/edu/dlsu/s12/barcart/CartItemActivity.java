@@ -119,15 +119,7 @@ public class CartItemActivity extends AppCompatActivity {
 
     private void getCartItems(){
 
-        /*
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String user_ID =  user.getUid();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        String docID = name + user_ID;
-
-        DocumentReference docRef = db.collection("carts").document(docID);
-           */
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         CollectionReference cartCollectionRef = db.collection("carts");
@@ -155,7 +147,6 @@ public class CartItemActivity extends AppCompatActivity {
             }
         });
 
-        //docRef.get().
 
     }
     private void setCartItemAdapter() {

@@ -61,16 +61,7 @@ public class AddItemActivity extends AppCompatActivity {
         add_item_confirm_Button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                /*
-                //note going to CartItemActivity is currently not possible because there is no way to determine what the previous cart selected was.
-                Intent intent = new Intent(AddItemActivity.this, CartItemActivity.class);
-                 */
-                /*
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-               DocumentReference cartRef = db.collection("carts").getId()
-                */
-                //Query singleCartQuery = cartCollectionRef.whereEqualTo("cartName",  name.toString()).whereEqualTo("cartDesc",  desc.toString());
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String user_ID =  user.getUid();
@@ -81,12 +72,6 @@ public class AddItemActivity extends AppCompatActivity {
 
 
                 db.collection("carts").document(docID).update("items", selectedItems);
-
-               //Query docQuer = db.collection("carts").whereEqualTo("cartName",  name.toString()).whereEqualTo("cartDesc",  desc.toString());
-
-
-
-
 
 
                 Intent intent = new Intent(AddItemActivity.this, menuActivity.class);
@@ -133,25 +118,7 @@ public class AddItemActivity extends AppCompatActivity {
     }
     private void setAddItemAdapter() {
 
-        /*
-        item_add_List.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
 
-
-
-        item_add_List.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-
-         */
         addItemAdapter adapter = new addItemAdapter(item_add_List);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

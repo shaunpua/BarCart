@@ -52,55 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signinBtn = findViewById(R.id.signinButton);
         emailInput = findViewById(R.id.emailInput);
         passInput = findViewById(R.id.passwordInput);
-        /*
-        INSERT CODE FOR NOTIFICATION AND DATA CHECKING HERE
-        //site below to click a button that lets you schedule alarms and mayb notifs(?) to appear on a certain date of the year
-         https://www.tutorialspoint.com/how-to-set-an-android-notification-to-a-specific-date-in-the-future
-         */
-        /*
 
-
-        //checking date
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH) + 1;
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-
-        Toast.makeText(this,"Today's Date: " + currentYear + currentMonth + currentDay, Toast.LENGTH_SHORT).show();
-        //making a notif
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
-            NotificationChannel channel=new NotificationChannel("Barcart Notification","NotificationChannel", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            manager.createNotificationChannel(channel);
-        }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this,"Barcart Notification");
-        builder.setContentTitle("BarCart App");
-        builder.setContentText("One or more carts in need of restocking!");
-        builder.setSmallIcon(R.drawable.ic_notifications);
-        builder.setAutoCancel(true);
-        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
-        managerCompat.notify(0,builder.build());
-        */
-        /*
-        END NOTIFICATION CHECKING HERE
-         */
         signupRedirect.setOnClickListener(this);
 
         signinBtn.setOnClickListener(this);
-
-        /*
-
-        signupRedirect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        */
 
 
     }

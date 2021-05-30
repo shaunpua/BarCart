@@ -43,77 +43,7 @@ public class CartFragment extends Fragment {
         setCartInfo();
 
 
-/*
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
 
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
-                cartList.remove(viewHolder.getAdapterPosition());
-
-                setCartAdapter();
-
-
-
-            }
-        }).attachToRecyclerView(recyclerView);
-
- */
-
-
-
-        /*
-        final Activity activity = getActivity();
-
-        RecyclerView recycler_view = (RecyclerView) root.findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
-        recycler_view.setLayoutManager(layoutManager);
-        */
-        /*
-        //https://stackoverflow.com/questions/26621060/display-a-recyclerview-in-fragment
-         new Thread(new Runnable() {
-        @Override
-        public void run() {
-            final RecyclerAdapter adapter = new RecyclerAdapter(c);
-            c.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    recyclerView.setAdapter(adapter);
-                }
-            });
-        }
-    }).start();
-
-        /*
-        Log.i("test", "Logcat->Verbose tagname(test)");
-
-        this.data = load_data();
-        Log.i("test", "Logcat->Verbose tagname(test)");
-
-        MainAdapter mainAdapter = new MainAdapter(data);
-        recycler_view.setAdapter(mainAdapter);
-        recycler_view.addItemDecoration(new DividerItemDecoration(recycler_view.getContext(), DividerItemDecoration.VERTICAL));
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //When item swipe
-                //Remove from arrayList
-                data.remove(viewHolder.getAdapterPosition());
-                //notify adapter
-                mainAdapter.notifyDataSetChanged();
-            }
-        }).attachToRecyclerView(recycler_view);
-
-         */
         return view;
     }
     private void setCartAdapter() {
@@ -126,25 +56,6 @@ public class CartFragment extends Fragment {
     }
 
     private void setCartInfo() {
-
-        /*
-        ArrayList<Item> product1 = new ArrayList<>();
-
-
-
-        product1.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-
-        cartList.add(new Cart(
-                "Robinsons Grocery", "Cart for groceries" , "user1",product1));
-
-        }
-        */
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -188,25 +99,6 @@ public class CartFragment extends Fragment {
 
             }
         });
-        /*
-        ArrayList<Item> product1 = new ArrayList<>();
-
-
-
-        product1.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-
-        cartList.add(new Cart(
-                "Robinsons Grocery", "Cart for groceries" , "user1",product1));
-
-
-        */
-
 
 
     }

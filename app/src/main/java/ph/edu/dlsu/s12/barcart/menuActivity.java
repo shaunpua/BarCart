@@ -45,12 +45,7 @@ public class menuActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListner);
         btnDate = findViewById(R.id.btnDate2);
         add_cart_btn=findViewById(R.id.add_cart_btn);
-        /*
-        add_cart_btn.setOnClickListener((View v) -> {
-            startActivity(new Intent(menuActivity.this, AddCartActivity.class));
-        });
 
-         */
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new ScanFragment()).commit();
     }
     public void addCart(View view) {
@@ -65,7 +60,7 @@ public class menuActivity extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, delay, pendingIntent);
-        //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, delay, pendingIntent);
+
     }
 
     private Notification getNotification(String content) {
@@ -114,14 +109,9 @@ public class menuActivity extends AppCompatActivity {
         //trying something
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         long tmp=(calendar.getTimeInMillis() );
-/*
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH) + 1;
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
- */
         scheduleNotification(getNotification(alarmdate), ((date.getTime())-tmp));
-        //scheduleNotification(getNotification(btnDate.getText().toString()), date.getTime());
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListner =

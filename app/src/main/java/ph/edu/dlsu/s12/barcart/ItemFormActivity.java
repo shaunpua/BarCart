@@ -63,7 +63,7 @@ public class ItemFormActivity extends AppCompatActivity {
                 String Itemdesc = descInput.getText().toString().trim();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String user_ID =  user.getUid();
-                //save to shared preferences and create entry in recycler view and then navigate to CartFragment
+
                 if (nameInput.getText().toString().trim().isEmpty()) {
                     nameInput.setError("Item Name is required!");
                     nameInput.requestFocus();
@@ -95,22 +95,7 @@ public class ItemFormActivity extends AppCompatActivity {
                         }
                     });
 
-                    /*
-                    db.collection("items")
-                            .add(item)
-                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Toast.makeText(ItemFormActivity.this, "Successfully added item!", Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(ItemFormActivity.this, "Failed to add item!", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                    */
+
 
                     Intent intent = new Intent(ItemFormActivity.this, menuActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

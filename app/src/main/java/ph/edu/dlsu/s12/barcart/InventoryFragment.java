@@ -47,51 +47,6 @@ public class InventoryFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.inventoryRecycler);
         itemList= new ArrayList<>();
-        /*
-        itemList.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-        */
-
-        /*
-        itemList.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-        itemList.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-        itemList.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-
-        itemList.add(new Item(
-                "Iphone 12",
-                "14444124124",
-                "This is a scam by steve jobs",
-                "123456"
-        ));
-        */
-        /*
-        ItemAdapter adapter = new ItemAdapter(itemList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adapter);
-        */
 
 
         setItemAdapter();

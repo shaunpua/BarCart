@@ -54,16 +54,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         signinRedirect.setOnClickListener(this);
         signupBtn.setOnClickListener(this);
-        /*
-        signinRedirect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        */
 
     }
 
@@ -156,22 +147,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                         }
                                     });
 
-                            /*
-                            FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                        if (task.isSuccessful()){
-                                            Toast.makeText(SignupActivity.this, "User has been successfully registered!", Toast.LENGTH_LONG).show();
-
-                                        } else {
-                                            Toast.makeText(SignupActivity.this, "Failed to register, try again!", Toast.LENGTH_LONG).show();
-                                        }
-
-                                    }
-                            });
-                            */
 
                             Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -21,7 +21,6 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
 
     ArrayList<Item> selectedItems = new ArrayList<>();
 
-    //private Context context;
 
     public addItemAdapter(ArrayList<Item> itemList){
         this.itemList = itemList;
@@ -42,12 +41,12 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
                 public boolean onLongClick(View v) {
                     isSelectedMode = true;
                     if (selectedItems.contains(itemList.get(getAdapterPosition()))){
-                        //view.setBackgroundColor(Color.TRANSPARENT);
+
                         selectCheck.setVisibility(View.INVISIBLE);
 
                         selectedItems.remove(itemList.get(getAdapterPosition()));
                     } else {
-                        //view.setBackgroundColor(Color.BLACK);
+
                         selectCheck.setVisibility(View.VISIBLE);
                         selectedItems.add(itemList.get(getAdapterPosition()));
                     }
@@ -65,11 +64,11 @@ public class addItemAdapter  extends RecyclerView.Adapter<addItemAdapter.MyViewH
                 public void onClick(View v) {
                     if (isSelectedMode){
                         if (selectedItems.contains(itemList.get(getAdapterPosition()))){
-                            //view.setBackgroundColor(Color.TRANSPARENT);
+
                             selectCheck.setVisibility(View.INVISIBLE);
                             selectedItems.remove(itemList.get(getAdapterPosition()));
                         } else {
-                            //view.setBackgroundColor(Color.BLACK);
+
                             selectCheck.setVisibility(View.VISIBLE);
                             selectedItems.add(itemList.get(getAdapterPosition()));
                         }
