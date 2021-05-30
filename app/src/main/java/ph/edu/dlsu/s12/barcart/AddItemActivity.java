@@ -90,6 +90,8 @@ public class AddItemActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(AddItemActivity.this, menuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                 startActivity(intent);
                 finish();
             }

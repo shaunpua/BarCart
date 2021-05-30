@@ -43,7 +43,7 @@ public class CartFragment extends Fragment {
         setCartInfo();
 
 
-
+/*
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -61,6 +61,8 @@ public class CartFragment extends Fragment {
 
             }
         }).attachToRecyclerView(recyclerView);
+
+ */
 
 
 

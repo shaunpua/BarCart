@@ -69,7 +69,7 @@ public class AddCartActivity extends AppCompatActivity {
 
                     //Toast.makeText(AddCartActivity.this,"New Cart Created!",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddCartActivity.this, menuActivity.class);
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     //intent.putExtra("cartName",cartName);
                     startActivity(intent);
                     finish();
@@ -81,6 +81,7 @@ public class AddCartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(AddCartActivity.this, menuActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
             }

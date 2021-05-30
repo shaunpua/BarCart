@@ -15,6 +15,27 @@
         android:textColor="#000000"
         android:textSize="32sp" />
 
+    <ImageView
+        android:id="@+id/cartDelete"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/ic_delete"
+        android:backgroundTint="#FF5C6C" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Item_add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="-50dp"
+        android:layout_marginRight="15dp"
+        android:clickable="true"
+        android:onClick="addItem"
+        app:backgroundTint="#BDBDBD"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,25 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="cart description" />
-            <ImageView
-                android:id="@+id/cartDelete"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="-20dp"
-                android:layout_gravity="right"
-                android:backgroundTint="#FF5C6C"
-                android:background="@drawable/ic_delete" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/Item_add_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="15dp"
-                android:clickable="true"
-                android:onClick="addItem"
-                app:backgroundTint="#BDBDBD"
-                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cartItemRecycler"
